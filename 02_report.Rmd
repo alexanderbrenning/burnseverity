@@ -1,0 +1,77 @@
+---
+title: "Benchmarking burn severity predictors using Sentinel-2 data and penalized regression: the 2016-17 Chilean fire-storm"
+subtitle: "Summary of analysis results"
+author: "Marco Pena and Alexander Brenning"
+date: "`r strftime(Sys.Date(), format = '%d %b %Y')`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment = "")
+options(digits = 3)
+```
+
+```{r prepare, include=FALSE}
+library("purrr")
+library("magrittr")
+library("stringr")
+
+# Read data and results:
+d <- readRDS("burnseverity.rds")
+res <- readRDS("cvresults.rds")
+
+# Summarize CV results:
+train_rmse <- sapply(res, function(x) x$summary["train_rmse", "mean"])
+train_sd <- sapply(res, function(x) x$summary["train_rmse", "sd"])
+test_rmse <- sapply(res, function(x) x$summary["test_rmse", "mean"])
+test_sd <- sapply(res, function(x) x$summary["test_rmse", "sd"])
+
+# Extract names of predictors:
+predictors <- res %>% map("formula") %>% 
+  map(function(x) all.vars(x)[-1]) %>%
+  map(paste, collapse = ", ", sep = "") %>% 
+  unlist() %>% unname()
+# Extract number of predictors:
+npredictors <- res %>% map("formula") %>%
+  map(function(x) length(all.vars(x)[-1])) %>%
+  unlist() %>% unname()
+
+# Create data.frame with results:
+rmse <- data.frame(
+  model = c("constant", 
+            rep("linear regression", 2), 
+            rep("ridge regression", length(res) - 3)),
+  nvariables = npredictors,
+  train_rmse_mean = train_rmse, 
+  train_rmse_sd = train_sd,
+  test_rmse_mean = test_rmse,
+  test_rmse_sd = test_sd)
+
+```
+
+
+
+## Results
+
+
+```{r rmse, echo=FALSE}
+# Output results as a table:
+knitr::kable(rmse)
+```
+
+
+## Checks
+
+Now double-check that the correct features were used:
+
+```{r predictors, echo=FALSE, results = "asis"}
+# Just double-checking that the correct feature sets were used:
+for (i in 1:length(predictors)) {
+  writeLines(paste0("\n**Model: ", rmse$model[i], 
+      "**\n\n**Predictor set: ", gsub("lm", "", rownames(rmse)[i]),
+      "**\n\nPredictors:\n"))
+  writeLines(predictors[i])
+  cat("\n------\n\n")
+}
+```
+
