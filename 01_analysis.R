@@ -18,6 +18,7 @@ library("MASS")         # what for??
 
 library("glmnet")       # for ridge regression
 library("sperrorest")   # for spatial cross-validation
+                        # at least version 3.0.4
 
 library("plotly")       # for PCA visualization (optional)
 
@@ -150,8 +151,6 @@ coef.ridge.all
 
 # Correlation of predictions:
 cor(mod_predict(fit.ridge, newdata = d), mod_predict(fit.lm, newdata = d))
-# This is just to show how biased a performance assessment on the training set
-# would be! -> we must cross-validate tuned_glmnet!
 
 # Just for fun, some plots that are not meant for publication:
 par(mfrow = c(1,3))
