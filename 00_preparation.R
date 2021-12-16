@@ -7,7 +7,7 @@
 ## Import and prepare data for modeling
 ############################################################################
 
-d <- read.csv("tablaCBI_2019_20_indices y difbanda_filled data.csv", 
+d <- read.csv("burnseverity.csv", 
               header = TRUE, sep = ";", na.strings = c("","na"))
 
 # Select only used columns:
