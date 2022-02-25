@@ -48,7 +48,10 @@ xvars_bands <- stringr::str_subset(colnames(d), "^B[0-9]*")
 xvars_ndvis <- stringr::str_subset(colnames(d), "^NDVI*")
 xvars_ndwis <- stringr::str_subset(colnames(d), "^NDWI*")
 xvars_nbrs <- stringr::str_subset(colnames(d), "^NBR*")
-xvars_nbr <- c("NBR2017") 
+xvars_nbr2017 <- c("NBR2017")
+xvars_nbr2018 <- c("NBR2018")
+xvars_nbr2019 <- c("NBR2019")
+xvars_nbr2020 <- c("NBR2020")
 xvars_indxs <- c(xvars_nbrs, xvars_ndvis, xvars_ndwis)
 xvars_indxs2017 <- stringr::str_subset(xvars_indxs, "2017")
 xvars_indxs2018 <- stringr::str_subset(xvars_indxs, "2018")
@@ -64,7 +67,10 @@ yvar <- "CBI.Dosel"
 
 fo_null <- CBI.Dosel ~ 1
 fo <- as.formula(paste(yvar, "~", paste(xvars, collapse = " + ")))
-fo_nbr <- as.formula(paste(yvar, "~", paste(xvars_nbr, collapse = " + ")))
+fo_nbr2017 <- as.formula(paste(yvar, "~", paste(xvars_nbr2017, collapse = " + ")))
+fo_nbr2018 <- as.formula(paste(yvar, "~", paste(xvars_nbr2018, collapse = " + ")))
+fo_nbr2019 <- as.formula(paste(yvar, "~", paste(xvars_nbr2019, collapse = " + ")))
+fo_nbr2020 <- as.formula(paste(yvar, "~", paste(xvars_nbr2020, collapse = " + ")))
 fo_nbrs <- as.formula(paste(yvar, "~", paste(xvars_nbrs, collapse = " + ")))
 fo_ndvis <- as.formula(paste(yvar, "~", paste(xvars_ndvis, collapse = " + ")))
 fo_ndwis <- as.formula(paste(yvar, "~", paste(xvars_ndwis, collapse = " + ")))
@@ -206,9 +212,21 @@ analyses <- list(
     model = lm,
     formula = fo_null
   ),
-  lmNBR1 = list(
+  lmNBR2017 = list(
     model = lm,
-    formula = fo_nbr
+    formula = fo_nbr2017
+  ),
+  lmNBR2018 = list(
+    model = lm,
+    formula = fo_nbr2018
+  ),
+  lmNBR2019 = list(
+    model = lm,
+    formula = fo_nbr2019
+  ),
+  lmNBR2020 = list(
+    model = lm,
+    formula = fo_nbr2020
   ),
   lmNBRs = list(
     model = lm,
