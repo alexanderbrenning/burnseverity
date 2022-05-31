@@ -136,6 +136,12 @@ fit.lm <- lm(fo_nbrs, data = d)
 summary(fit.lm)
 coef.lm <- coef(fit.lm)
 
+# Fit simple linear regression with only one predictor (based on AIC)
+fit.lm1 <- steplm1(fo_nbrs, data = d)
+coef.lm1 <- coef.lm * 0
+coef.lm1[names(coef(fit.lm1))] <- coef(fit.lm1)
+
+# Fit a ridge regression with hyperparameter tuning:
 fit.ridge <- tuned_glmnet(formula = fo_nbrs, data = d, verbose = 1)
 fit.ridge$lambda  # optimal lambda
 fit.ridge$a0      # intercept
@@ -146,6 +152,7 @@ names(coef.ridge) <- names(coef.lm)
 # Display model coefficients for table 8 in the paper:
 coef.lm
 coef.ridge
+coef.lm1
 
 # Just for curiosity, models with all variables:
 fit.lm.all <- lm(fo, data = d)
@@ -153,6 +160,7 @@ coef.lm.all <- coef(fit.lm.all)
 fit.ridge.all <- tuned_glmnet(formula = fo, data = d, verbose = 1)
 coef.ridge.all <- c(unname(fit.ridge.all$a0), fit.ridge.all$beta@x)
 names(coef.ridge.all) <- names(coef.lm.all)
+coef.lm.all
 coef.ridge.all
 
 # Correlation of predictions:
@@ -227,6 +235,10 @@ analyses <- list(
   lmNBR2020 = list(
     model = lm,
     formula = fo_nbr2020
+  ),
+  lm1NBRs = list(
+    model = steplm1,
+    formula = fo_nbrs
   ),
   lmNBRs = list(
     model = lm,

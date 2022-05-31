@@ -39,8 +39,9 @@ npredictors <- res %>% map("formula") %>%
 # Create data.frame with results:
 rmse <- data.frame(
   model = c("constant", 
-            rep("linear regression", 2), 
-            rep("ridge regression", length(res) - 3)),
+            rep("linear regression", 4), 
+            "stepwise regression",
+            rep("ridge regression", length(res) - 6)),
   nvariables = npredictors,
   train_rmse_mean = train_rmse, 
   train_rmse_sd = train_sd,

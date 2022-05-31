@@ -171,3 +171,21 @@ tuned_glmnet <- function(formula, data, alpha = 0,
           alpha = alpha, lambda = opt.lambda)
 }
 
+
+
+
+#' Self-tuning penalized regression using `glmnet`
+#'
+#' @param formula scope of formula
+#' @param data data frame with training sample
+#' @param ... additional arguments for function `step()`
+#'
+#' @return Fitted `lm` object.
+#' @export
+steplm1 <- function(formula, data, ...) {
+  fo0 <- as.formula(paste(as.character(formula)[2], "~ 1"))
+  fit0 <- lm(fo0, data = data)
+  step(fit0, scope = formula, direction = "forward", 
+       trace = 0, steps = 1)
+}
+
