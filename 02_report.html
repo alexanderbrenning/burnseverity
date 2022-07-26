@@ -11,7 +11,7 @@
 
 <meta name="author" content="Marco Pena and Alexander Brenning" />
 
-<meta name="date" content="2022-02-27" />
+<meta name="date" content="2022-06-01" />
 
 <title>Benchmarking burn severity predictors using Sentinel-2 data and penalized regression: the 2016-17 Chilean fire-storm</title>
 
@@ -168,7 +168,7 @@ pre code {
 <h1 class="title toc-ignore">Benchmarking burn severity predictors using Sentinel-2 data and penalized regression: the 2016-17 Chilean fire-storm</h1>
 <h3 class="subtitle">Summary of analysis results</h3>
 <h4 class="author">Marco Pena and Alexander Brenning</h4>
-<h4 class="date">27 Feb 2022</h4>
+<h4 class="date">01 Jun 2022</h4>
 
 </div>
 
@@ -217,7 +217,7 @@ pre code {
 </tr>
 <tr class="even">
 <td align="left">lmNBR2019</td>
-<td align="left">ridge regression</td>
+<td align="left">linear regression</td>
 <td align="right">1</td>
 <td align="right">0.565</td>
 <td align="right">0.000</td>
@@ -226,7 +226,7 @@ pre code {
 </tr>
 <tr class="odd">
 <td align="left">lmNBR2020</td>
-<td align="left">ridge regression</td>
+<td align="left">linear regression</td>
 <td align="right">1</td>
 <td align="right">0.580</td>
 <td align="right">0.000</td>
@@ -234,6 +234,15 @@ pre code {
 <td align="right">0.006</td>
 </tr>
 <tr class="even">
+<td align="left">lm1NBRs</td>
+<td align="left">stepwise regression</td>
+<td align="right">4</td>
+<td align="right">0.547</td>
+<td align="right">0.000</td>
+<td align="right">0.601</td>
+<td align="right">0.011</td>
+</tr>
+<tr class="odd">
 <td align="left">lmNBRs</td>
 <td align="left">ridge regression</td>
 <td align="right">4</td>
@@ -242,7 +251,7 @@ pre code {
 <td align="right">0.620</td>
 <td align="right">0.011</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NBRs</td>
 <td align="left">ridge regression</td>
 <td align="right">4</td>
@@ -251,7 +260,7 @@ pre code {
 <td align="right">0.591</td>
 <td align="right">0.005</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">NDVIs</td>
 <td align="left">ridge regression</td>
 <td align="right">4</td>
@@ -260,7 +269,7 @@ pre code {
 <td align="right">0.605</td>
 <td align="right">0.003</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NDWIs</td>
 <td align="left">ridge regression</td>
 <td align="right">4</td>
@@ -269,7 +278,7 @@ pre code {
 <td align="right">0.605</td>
 <td align="right">0.006</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Indexes2017</td>
 <td align="left">ridge regression</td>
 <td align="right">3</td>
@@ -278,7 +287,7 @@ pre code {
 <td align="right">0.673</td>
 <td align="right">0.009</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Indexes2018</td>
 <td align="left">ridge regression</td>
 <td align="right">3</td>
@@ -287,7 +296,7 @@ pre code {
 <td align="right">0.605</td>
 <td align="right">0.010</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Indexes2019</td>
 <td align="left">ridge regression</td>
 <td align="right">3</td>
@@ -296,7 +305,7 @@ pre code {
 <td align="right">0.626</td>
 <td align="right">0.008</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Indexes2020</td>
 <td align="left">ridge regression</td>
 <td align="right">3</td>
@@ -305,7 +314,7 @@ pre code {
 <td align="right">0.635</td>
 <td align="right">0.010</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Indexes</td>
 <td align="left">ridge regression</td>
 <td align="right">12</td>
@@ -314,7 +323,7 @@ pre code {
 <td align="right">0.594</td>
 <td align="right">0.005</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Bands</td>
 <td align="left">ridge regression</td>
 <td align="right">48</td>
@@ -323,7 +332,7 @@ pre code {
 <td align="right">0.644</td>
 <td align="right">0.012</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">All</td>
 <td align="left">ridge regression</td>
 <td align="right">60</td>
@@ -352,15 +361,20 @@ pre code {
 <p>Predictors:</p>
 <p>NBR2018</p>
 <hr />
-<p><strong>Model: ridge regression</strong></p>
+<p><strong>Model: linear regression</strong></p>
 <p><strong>Predictor set: NBR2019</strong></p>
 <p>Predictors:</p>
 <p>NBR2019</p>
 <hr />
-<p><strong>Model: ridge regression</strong></p>
+<p><strong>Model: linear regression</strong></p>
 <p><strong>Predictor set: NBR2020</strong></p>
 <p>Predictors:</p>
 <p>NBR2020</p>
+<hr />
+<p><strong>Model: stepwise regression</strong></p>
+<p><strong>Predictor set: 1NBRs</strong></p>
+<p>Predictors:</p>
+<p>NBR2017, NBR2018, NBR2019, NBR2020</p>
 <hr />
 <p><strong>Model: ridge regression</strong></p>
 <p><strong>Predictor set: NBRs</strong></p>
