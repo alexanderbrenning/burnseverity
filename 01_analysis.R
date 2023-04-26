@@ -1,8 +1,10 @@
 ############################################################################
 ## Code related to the paper:
-## "Benchmarking burn severity predictors using Sentinel-2 data and
-## penalized regression: the 2016-17 Chilean fire-storm"
-## (c) M.A. Pena and A. Brenning
+## M.A. Pena and A. Brenning (2023)
+## "Benchmarking Sentinel-2-derived predictors for long-term burn severity
+## modelling: the 2016-17 Chilean firestorm"
+## International Journal of Remote Sensing
+## https://doi.org/10.1080/01431161.2023.2205981
 ############################################################################
 ## Data analysis:
 ## - Exploratory analysis

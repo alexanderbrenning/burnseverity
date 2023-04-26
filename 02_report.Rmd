@@ -1,5 +1,5 @@
 ---
-title: "Benchmarking burn severity predictors using Sentinel-2 data and penalized regression: the 2016-17 Chilean fire-storm"
+title: "Benchmarking Sentinel-2-derived predictors for long-term burn severity modelling: the 2016-17 Chilean firestorm"
 subtitle: "Summary of analysis results"
 author: "Marco Pena and Alexander Brenning"
 date: "`r strftime(Sys.Date(), format = '%d %b %Y')`"
@@ -49,6 +49,11 @@ rmse <- data.frame(
   test_rmse_sd = test_sd)
 
 ```
+
+
+This document compiles some of the results produced for the following paper, which must be referenced when using the following information:
+
+- Pena, M.A. & Brenning, A. (2023). Benchmarking Sentinel-2-derived predictors for long-term burn severity modelling: the 2016-17 Chilean firestorm. *International Journal of Remote Sensing*, <https://doi.org/10.1080/01431161.2023.2205981>
 
 
 
